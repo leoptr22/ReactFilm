@@ -45,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+    <h6>Pagina en produccion</h6>
       <h1>ReactFilm</h1>
       <h3>Rama QA</h3>
       <h2>Películas Populares de IMDb</h2>
