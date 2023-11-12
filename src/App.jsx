@@ -46,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <h1>ReactFilm</h1>
+      <h3>Rama QA</h3>
       <h2>Películas Populares de IMDb</h2>
       <div className='movie-container'>
         {moviesToShow.map((m, index) => (
