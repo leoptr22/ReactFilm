@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-function App() {
+function Movie() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesxpagina] = useState(12); 
+  const [moviesxpagina] = useState(5); 
 
   const [movie, setMovie] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
@@ -47,7 +47,6 @@ function App() {
     <div className="App">
     <h6>Pagina en produccion</h6>
       <h1>ReactFilm</h1>
-      <h3>Rama QA</h3>
       <h2>Películas Populares de IMDb</h2>
       <div className='movie-container'>
         {moviesToShow.map((m, index) => (
@@ -69,4 +68,4 @@ function App() {
   );
 }
 
-export default App;
+export default Movie;
