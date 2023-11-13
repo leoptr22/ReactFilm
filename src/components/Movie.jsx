@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import '../App.css';
 
 function Movie() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,9 +53,11 @@ function Movie() {
           <div key={index} className='movie-item'>
             <img src={`${imgs + m.poster_path}`} alt="poster" style={{ height: "300px" }} />
             <div className='overview'>
-              <h3>{m.title}</h3>
-              <h6>{m.overview}</h6>
             </div>
+            <h6>Votacion {m.vote_average}</h6>
+
+            <h3>{m.title}</h3>
+
           </div>
         ))}
       </div>

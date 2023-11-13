@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Series = () => {
+const Topseries = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesxpagina] = useState(5); 
   
@@ -11,7 +11,7 @@ const Series = () => {
       const getApiMovie = async () => {
         try {
           const apiKey = 'ddf286270a985c5d9fa71c7e94ae8da7';
-          const endpoint = `https://api.themoviedb.org/3/tv/popular?language=es-US&page=${currentPage}&api_key=${apiKey}`;
+          const endpoint = `https://api.themoviedb.org/3/tv/top_rated?language=es-US&page=${currentPage}&api_key=${apiKey}`;
   
           const response = await fetch(endpoint);
   
@@ -44,15 +44,18 @@ const Series = () => {
   
     return (
       <div className="App">
-        <h2>Series Populares de IMDb</h2>
+        <h2>Peliculas Top</h2>
         <div className='movie-container'>
           {moviesToShow.map((m, index) => (
             <div key={index} className='movie-item'>
               <img src={`${imgs + m.poster_path}`} alt="poster" style={{ height: "300px" }} />
               <div className='overview'>
-                <h3>{m.original_name}</h3>
-                <h6>{m.overview}</h6>
               </div>
+              <h6>Votacion {m.vote_average}</h6>
+
+              <h3>{m.original_name}</h3>
+
+
             </div>
           ))}
         </div>
@@ -65,4 +68,4 @@ const Series = () => {
     );
   }
   
-export default Series
+export default Topseries

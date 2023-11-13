@@ -51,10 +51,6 @@
   justify-content: space-between;
 }
 
-.movie-item {
-  width: 18%;
-  margin-bottom: 20px;
-}
 
 .pagination {
   margin-top: 20px;
@@ -89,8 +85,8 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(110, 70, 70, 0.7);
-  color: rgb(17, 16, 16);
+  
+  color: rgb(252, 245, 245);
   padding: 10px;
   font-size: 20px;
   display: none;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Topseries = () => {
+const TopMovie = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesxpagina] = useState(5); 
   
@@ -11,7 +11,7 @@ const Topseries = () => {
       const getApiMovie = async () => {
         try {
           const apiKey = 'ddf286270a985c5d9fa71c7e94ae8da7';
-          const endpoint = `https://api.themoviedb.org/3/tv/top_rated?language=es-US&page=${currentPage}&api_key=${apiKey}`;
+          const endpoint = `https://api.themoviedb.org/3/movie/top_rated?language=es-US&page=${currentPage}&api_key=${apiKey}`;
   
           const response = await fetch(endpoint);
   
@@ -50,9 +50,11 @@ const Topseries = () => {
             <div key={index} className='movie-item'>
               <img src={`${imgs + m.poster_path}`} alt="poster" style={{ height: "300px" }} />
               <div className='overview'>
-                <h3>{m.original_name}</h3>
-                <h6>{m.overview}</h6>
               </div>
+              <h6>Votacion {m.vote_average}</h6>
+              <h3>{m.original_title}</h3>
+
+
             </div>
           ))}
         </div>
@@ -65,4 +67,4 @@ const Topseries = () => {
     );
   }
   
-export default Topseries
+export default TopMovie
