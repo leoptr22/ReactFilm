@@ -1,73 +1,73 @@
 import { useEffect, useState } from 'react';
+import SwiperCore from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+
+import 'swiper/swiper-bundle.css';
 import '../App.css';
 
-function Movie() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [moviesxpagina] = useState(5); 
+SwiperCore.use([Navigation, Pagination]);
 
-  const [movie, setMovie] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+function Movie() {
+  const [movies, setMovies] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const getApiMovie = async () => {
+    const getApiMovies = async () => {
       try {
         const apiKey = 'ddf286270a985c5d9fa71c7e94ae8da7';
-        const endpoint = `https://api.themoviedb.org/3/movie/popular?language=es-US&page=${currentPage}&api_key=${apiKey}`;
+        const endpoint = `https://api.themoviedb.org/3/movie/popular?language=es-US&page=${1}&api_key=${apiKey}`;
 
         const response = await fetch(endpoint);
 
         if (!response.ok) {
-          throw new Error('Error en buscar los datos');
+          throw new Error('Error al buscar los datos');
         }
 
         const data = await response.json();
-        setMovie(data.results);
+        setMovies(data.results);
         setTotalPages(data.total_pages);
       } catch (err) {
         console.error(err);
       }
     };
 
-    getApiMovie();
-  }, [currentPage]);
+    getApiMovies();
+  }, []);
 
   const imgs = 'https://image.tmdb.org/t/p/w500';
 
-  const goToPreviousPage = () => {
-    setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
-  };
-
-  const goToNextPage = () => {
-    setCurrentPage(currentPage === totalPages ? totalPages : currentPage + 1);
-  };
-
-  const moviesToShow = movie.slice(0, moviesxpagina);
-
   return (
+
+    
     <div className="App">
-    <h6>Pagina en produccion</h6>
-      <h1>ReactFilm</h1>
-      <h2>Películas Populares de IMDb</h2>
-      <div className='movie-container'>
-        {moviesToShow.map((m, index) => (
-          <div key={index} className='movie-item'>
-            <img src={`${imgs + m.poster_path}`} alt="poster" style={{ height: "300px" }} />
-            <div className='overview'>
+
+    <h3>PELICULAS POPULARES</h3>
+
+      <Swiper
+        spaceBetween={2}
+        loop='true'
+
+        slidesPerView={5}
+        navigation
+        onSwiper={(swiper) => {
+          console.log(swiper)
+        }}
+      >
+        {movies.map((m, index) => (
+          <SwiperSlide key={index}>
+            <div className='movie-item'>
+              <img src={`${imgs + m.poster_path}`} alt="poster" style={{ height: "250px", width:"200px"}} />
+              <div className='overview'></div>
+              <h6>Votación: {m.vote_average}</h6>
+              <h3>{m.title}</h3>
             </div>
-            <h6>Votacion {m.vote_average}</h6>
-
-            <h3>{m.title}</h3>
-
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
-
-      <div className='pagination'>
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>Atrás</button>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>Adelante</button>
-      </div>
+      </Swiper>
     </div>
   );
 }
 
 export default Movie;
+
