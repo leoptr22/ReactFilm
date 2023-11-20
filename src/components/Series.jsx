@@ -13,6 +13,7 @@ function Prueba() {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
+    console.log(totalPages)
     const getApiMovies = async () => {
       try {
         const apiKey = 'ddf286270a985c5d9fa71c7e94ae8da7';
@@ -33,7 +34,7 @@ function Prueba() {
     };
 
     getApiMovies();
-  }, []);
+  }, [totalPages]);
 
   const imgs = 'https://image.tmdb.org/t/p/w500';
 
