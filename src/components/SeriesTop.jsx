@@ -10,7 +10,7 @@ SwiperCore.use([Navigation, Pagination]);
 
 function SeriesTop() {
   const [movies, setMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
+  const [ setTotalPages] = useState(1);
 
   useEffect(() => {
     const getApiMovies = async () => {
@@ -26,14 +26,14 @@ function SeriesTop() {
 
         const data = await response.json();
         setMovies(data.results);
-        setTotalPages(data.total_pages);
+        setTotalPages(data.total_Pages);
       } catch (err) {
         console.error(err);
       }
     };
 
     getApiMovies();
-  }, []);
+  }, [setTotalPages]);
 
   const imgs = 'https://image.tmdb.org/t/p/w500';
 
