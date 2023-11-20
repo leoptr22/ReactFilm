@@ -10,7 +10,6 @@ SwiperCore.use([Navigation, Pagination]);
 
 function SeriesTop() {
   const [movies, setMovies] = useState([]);
-  const [ setTotalPages] = useState(1);
 
   useEffect(() => {
     const getApiMovies = async () => {
@@ -26,14 +25,13 @@ function SeriesTop() {
 
         const data = await response.json();
         setMovies(data.results);
-        setTotalPages(data.total_Pages);
       } catch (err) {
         console.error(err);
       }
     };
 
     getApiMovies();
-  }, [setTotalPages]);
+  }, []);
 
   const imgs = 'https://image.tmdb.org/t/p/w500';
 
@@ -46,7 +44,7 @@ function SeriesTop() {
 
       <Swiper
         spaceBetween={2}
-        loop='true'
+        loop
 
         slidesPerView={5}
         navigation
