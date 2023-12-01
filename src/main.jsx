@@ -6,9 +6,11 @@ import TopMovie from './components/TopMovie.jsx'
 import Topseries from './components/SeriesTop.jsx'
 import Header from './components/Header.jsx'
 import './index.css'
+import Clima from './components/clima.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+  <Clima style={{ width: '10px', height: '10px'}}/>
     <Header/>
     <Movie />
     <TopMovie/>

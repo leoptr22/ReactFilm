@@ -16,10 +16,10 @@ const Header = () => {
     const intervalId = setInterval(() => {
       const newRandomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)];
       setBannerImage(newRandomImage);
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
-  }, []); // El array vacío asegura que este efecto se ejecute solo una vez al montar el componente
+  }, []); 
 
   return (
     <div>
