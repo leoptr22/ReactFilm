@@ -9,17 +9,16 @@ const Clima = () => {
   useEffect(() => {
     const obtenerClima = async () => {
       try {
-        const endpointClima = `http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=${apiKey}`;
+        const endpointClima = `https://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=${apiKey}`;
         const response = await axios.get(endpointClima);
 
-
-        if (!response.data) {
-          throw new Error('Error al buscar los datos');
+        if (!response.data || !response.data.DailyForecasts) {
+          throw new Error('Error al buscar los datos del clima');
         }
 
         setClima(response.data.DailyForecasts);
       } catch (err) {
-        console.error('Error al obtener el clima:', err);
+        console.error('Error al obtener el clima:', err.message);
       }
     };
 
@@ -33,15 +32,15 @@ const Clima = () => {
         <ul>
           {clima.map((dia, index) => (
             <li key={index}>
-            <p>Fecha: {new Date(dia.Date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
+              <p>Fecha: {new Date(dia.Date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
               <img
                 src={`https://www.accuweather.com/images/weathericons/${dia.Day.Icon}.svg`}
                 alt={`Icono de clima para ${dia.Day.IconPhrase}`}
                 style={{ width: '50px', height: '50px' }}
               /> 
-              <p>Temp. máx: {dia.Temperature.Maximum.Value} {dia.Temperature.Maximum.Unit= 'C'}</p>
-              <p>Temp. mín: {dia.Temperature.Minimum.Value} {dia.Temperature.Minimum.Unit= 'C'}</p>
-              {/* Otros detalles del pronóstico */}
+              <p>Temp. máx: {dia.Temperature.Maximum.Value} {dia.Temperature.Maximum.Unit === 'C' && '°C'}</p>
+              <p>Temp. mín: {dia.Temperature.Minimum.Value} {dia.Temperature.Minimum.Unit === 'C' && '°C'}</p>
+            
             </li>
           ))}
         </ul>
