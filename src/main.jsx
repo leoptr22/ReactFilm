@@ -10,7 +10,7 @@ import Clima from './components/clima.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <Clima style={{ width: '10px', height: '10px'}}/>
+  <Clima />
     <Header/>
     <Movie />
     <TopMovie/>
