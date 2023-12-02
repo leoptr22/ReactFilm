@@ -38,9 +38,9 @@ const Clima = () => {
                 alt={`Icono de clima para ${dia.Day.IconPhrase}`}
                 style={{ width: '50px', height: '50px' }}
               /> 
-              <p>Temp. máx: {dia.Temperature.Maximum.Value} {dia.Temperature.Maximum.Unit === 'C' && '°C'}</p>
-              <p>Temp. mín: {dia.Temperature.Minimum.Value} {dia.Temperature.Minimum.Unit === 'C' && '°C'}</p>
-            
+              <p>Temp. máx: {((dia.Temperature.Maximum.Value - 32) * 5/9).toFixed(1)} °C</p>
+              <p>Temp. mín: {((dia.Temperature.Minimum.Value - 32) * 5/9).toFixed(1)} °C</p>
+    
             </li>
           ))}
         </ul>
