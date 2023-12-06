@@ -5,6 +5,62 @@
   text-align: center;
 }
 
+/* busqueda */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+}
+
+.grid-item {
+  width: calc(75% - 20px);
+    box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+/* SearchMovie.css */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.clear-button {
+padding: 1px;
+font-size: 16px;
+background-color: #e50914;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin: 10px;
+margin-left: auto;
+
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #e50914; 
+  border-radius: 5px;
+  margin-right: 10px;
+  color: #e50914; 
+  width: 350px;
+}
+.search-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/* busqueda */
+
 body {
   margin: 0;
   padding: 0;

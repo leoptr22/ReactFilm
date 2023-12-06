@@ -4,7 +4,7 @@ const Header = () => {
   const [bannerImage, setBannerImage] = useState('');
   const bannerImages = [
 "https://i0.wp.com/brooo.tv/wp-content/uploads/2023/04/mario-BANNER-WP-FORMS.jpg?fit=960%2C540&ssl=1"  ,
-"https://etb.com/play/Imagenes/principales/banner3.jpg",
+"https://etb.com/play/Imagenes/principales/banner6.jpg",
 "https://4.bp.blogspot.com/-2gm3id3z8bM/T9kIprtCMUI/AAAAAAAAAqc/TnjHIk53qGY/s1600/LosVengadoresposter.jpg"  
   ];
 

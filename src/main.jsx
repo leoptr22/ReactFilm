@@ -7,10 +7,12 @@ import Topseries from './components/SeriesTop.jsx'
 import Header from './components/Header.jsx'
 import './index.css'
 import Clima from './components/clima.jsx'
+import SearchMovie from './components/Search.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Clima />
+  <SearchMovie/>
     <Header/>
     <Movie />
     <TopMovie/>
