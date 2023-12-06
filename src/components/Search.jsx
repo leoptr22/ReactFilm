@@ -24,7 +24,8 @@ const SearchMovie = () => {
     setQuery(event.target.value);
   };
   const handleClear = (e)=> { 
-    setQuery(e.target.value)
+    setQuery('')
+    setResults([])
   }
 
   const handleSubmit = (event) => {
