@@ -36,7 +36,7 @@ const Clima = () => {
               <img
                 src={`https://www.accuweather.com/images/weathericons/${dia.Day.Icon}.svg`}
                 alt={`Icono de clima para ${dia.Day.IconPhrase}`}
-                style={{ width: '50px', height: '50px' }}
+                style={{ width: '50px', height: '80px' }}
               /> 
               <p>Temp. máx: {((dia.Temperature.Maximum.Value - 32) * 5/9).toFixed(1)} °C</p>
               <p>Temp. mín: {((dia.Temperature.Minimum.Value - 32) * 5/9).toFixed(1)} °C</p>

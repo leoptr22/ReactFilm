@@ -8,11 +8,13 @@ import Header from './components/Header.jsx'
 import './index.css'
 import Clima from './components/clima.jsx'
 import SearchMovie from './components/Search.jsx'
+import Page from './components/Relato.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Clima />
   <SearchMovie/>
+  <Page/>
     <Header/>
     <Movie />
     <TopMovie/>
