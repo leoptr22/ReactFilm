@@ -1,11 +1,5 @@
 /* src/main.css */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-
-
 
 #root {
   max-width: 1280px;
