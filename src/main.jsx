@@ -13,9 +13,11 @@ import Page from './components/Relato.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Clima />
+
   <SearchMovie/>
-  <Page/>
     <Header/>
+    <Page/>
+
     <Movie />
     <TopMovie/>
     <Series />
