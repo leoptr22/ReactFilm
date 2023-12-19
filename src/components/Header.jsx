@@ -1,43 +1,102 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
   const [bannerImage, setBannerImage] = useState('');
-  const bannerImages = [
-"https://i0.wp.com/brooo.tv/wp-content/uploads/2023/04/mario-BANNER-WP-FORMS.jpg?fit=960%2C540&ssl=1"  ,
-"https://etb.com/play/Imagenes/principales/banner6.jpg",
-"https://4.bp.blogspot.com/-2gm3id3z8bM/T9kIprtCMUI/AAAAAAAAAqc/TnjHIk53qGY/s1600/LosVengadoresposter.jpg"  
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
-    const randomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)];
+    const ApiKey = 'ddf286270a985c5d9fa71c7e94ae8da7'; 
 
-    setBannerImage(randomImage);
+    const fetchRandomMovie = async () => {
+      try {
+        const tmdbResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${ApiKey}&language=en-US&page=1`
+        );
+        const tmdbData = await tmdbResponse.json();
+
+        const movies = tmdbData.results;
+        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+
+        setBannerImage(`https://image.tmdb.org/t/p/original${randomMovie.poster_path}`);
+
+        // Obtener detalles de la película seleccionada
+        const detailsResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=en-US`
+        );
+        const details = await detailsResponse.json();
+        setMovieDetails(details);
+      } catch (error) {
+        console.error('Error TMDb:', error);
+      }
+    };
+
+    fetchRandomMovie();
 
     const intervalId = setInterval(() => {
-      const newRandomImage = bannerImages[Math.floor(Math.random() * bannerImages.length)];
-      setBannerImage(newRandomImage);
-    }, 3000);
+      fetchRandomMovie();
+    }, 6000);
 
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
+
+
+  const handleOpenModal = async () => {
+    const ApiKey = 'ddf286270a985c5d9fa71c7e94ae8da7'; 
+
+    // Si no hay detalles de la película, realiza una solicitud para obtenerlos
+    if (!movieDetails) {
+      try {
+        const tmdbResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${ApiKey}&language=en-US&page=1`
+        );
+        const tmdbData = await tmdbResponse.json();
+
+        const movies = tmdbData.results;
+        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+
+        // para obtener los detalles de la película 
+        const detailsResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=en-US`
+        );
+        const details = await detailsResponse.json();
+        setMovieDetails(details);
+      } catch (error) {
+        console.error('Error de TMDb:', error);
+      }
+    }
+
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <div>
-      <nav className="navbar">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HsiKwWmxCuENy2KrJnTmZaWMZN9kkm-SC0oW7dc1Qtq30k3-zabZ54EI0_cRsDUNkwg&usqp=CAU"
-          alt="Netflix Logo"
-          className="logo"
-        />
-        <ul className="nav-links">
-          <li>Inicio</li>
-          <li>Series</li>
-          <li>Películas</li>
-          <li>Mi lista</li>
-          <li>Populares mas vistas </li>
-        </ul>
-      </nav>
-      <img src={bannerImage} alt="Banner Image" className="banner-image" />
+    <div className="header-container">
+      <div className="banner-container">
+        <img src={bannerImage} alt="Banner Image" className="banner-image" />
+        {movieDetails && (
+          <div className="movie-buttons">
+            <button className="trailer-button" >
+              VER TRAILER
+            </button>
+            <button className="info-button" onClick={handleOpenModal}>
+              INFO
+            </button>
+          </div>
+        )}
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{movieDetails?.title}</h2>
+            <p>{movieDetails?.overview}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
