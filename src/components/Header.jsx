@@ -22,7 +22,7 @@ const Header = () => {
 
         // Obtener detalles de la película seleccionada
         const detailsResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=en-US`
+          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=es-ES`
         );
         const details = await detailsResponse.json();
         setMovieDetails(details);
@@ -57,8 +57,7 @@ const Header = () => {
 
         // para obtener los detalles de la película 
         const detailsResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=en-US`
-        );
+          `https://api.themoviedb.org/3/movie/${randomMovie.id}?api_key=${ApiKey}&language=es-ES`        );
         const details = await detailsResponse.json();
         setMovieDetails(details);
       } catch (error) {
